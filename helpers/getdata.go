@@ -73,5 +73,4 @@ func GetWeatherByPincode(key, pincode string) {
 	fmt.Printf("Minimum Temperature: %.2fC\n", apiresponse.Main.TempMin)
 	fmt.Printf("Maximum Temperature: %.2fC\n", apiresponse.Main.TempMax)
 	fmt.Printf("Feel's Like: %.2fC\n", apiresponse.Main.FeelsLike)
-
 }

@@ -3,6 +3,7 @@ package main
 import (
 	"fmt"
 	"os"
+	"strings"
 
 	"github.com/raocodes/WeatherCheckerGo/helpers"
 )
@@ -10,7 +11,9 @@ import (
 func main() {
 	var apikey string
 	var option byte
+	var optionpin string
 	var cityname string
+	var pincode string
 
 	fmt.Print("Enter your API key: ")
 	fmt.Scan(&apikey)
@@ -26,8 +29,22 @@ func main() {
 		os.Exit(0)
 	}
 
-	fmt.Print("Enter city name: ")
-	fmt.Scan(&cityname)
+	fmt.Print("Do you want to search by city or PIN code (city/pin): ")
+	fmt.Scan(&optionpin)
+	optionpin = strings.ToLower(optionpin)
 
-	helpers.GetWeatherByCity(apikey, cityname)
+	if optionpin == "city" {
+		fmt.Print("Enter city name: ")
+		fmt.Scan(&cityname)
+		helpers.GetWeatherByCity(apikey, cityname)
+
+	} else if optionpin == "pin" {
+		fmt.Print("Enter PIN code: ")
+		fmt.Scan(&pincode)
+		helpers.GetWeatherByPincode(apikey, pincode)
+
+	} else {
+		fmt.Println("Enter a valid option!")
+		os.Exit(0)
+	}
 }
