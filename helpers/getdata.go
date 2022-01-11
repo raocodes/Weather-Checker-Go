@@ -9,7 +9,7 @@ import (
 )
 
 func GetWeatherByCity(key, cityname string) {
-	apiurl := "http://api.openweathermap.org/data/2.5/weather?"
+	apiurl := "http://api.openweathermap.org/data/2.5/weather?units=metric&"
 
 	urltocall := fmt.Sprintf("%sq=%s&appid=%s", apiurl, cityname, key)
 	fmt.Println("Sending API call to:", urltocall)
@@ -35,9 +35,9 @@ func GetWeatherByCity(key, cityname string) {
 	}
 
 	fmt.Println("\nWeather data for", cityname)
-	fmt.Println("Current Temperature:", apiresponse.Main.Temp)
-	fmt.Println("Minimum Temperature:", apiresponse.Main.TempMin)
-	fmt.Println("Maximum Temperature:", apiresponse.Main.TempMax)
-	fmt.Println("Feel's Like:", apiresponse.Main.FeelsLike)
+	fmt.Printf("Current Temperature: %.2fC\n", apiresponse.Main.Temp)
+	fmt.Printf("Minimum Temperature: %.2fC\n", apiresponse.Main.TempMin)
+	fmt.Printf("Maximum Temperature: %.2fC\n", apiresponse.Main.TempMax)
+	fmt.Printf("Feel's Like: %.2fC\n", apiresponse.Main.FeelsLike)
 
 }
