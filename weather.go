@@ -10,6 +10,7 @@ import (
 func main() {
 	var apikey string
 	var option byte
+	var cityname string
 
 	fmt.Print("Enter your API key: ")
 	fmt.Scan(&apikey)
@@ -25,5 +26,8 @@ func main() {
 		os.Exit(0)
 	}
 
-	helpers.GetWeatherByCity(apikey, "Kuwait City")
+	fmt.Print("Enter city name: ")
+	fmt.Scan(&cityname)
+
+	helpers.GetWeatherByCity(apikey, cityname)
 }

@@ -34,7 +34,7 @@ func GetWeatherByCity(key, cityname string) {
 		os.Exit(1)
 	}
 
-	fmt.Println("\nWeather data for", cityname)
+	fmt.Println("\nWeather data for:", cityname)
 	fmt.Printf("Current Temperature: %.2fC\n", apiresponse.Main.Temp)
 	fmt.Printf("Minimum Temperature: %.2fC\n", apiresponse.Main.TempMin)
 	fmt.Printf("Maximum Temperature: %.2fC\n", apiresponse.Main.TempMax)
