@@ -9,7 +9,7 @@ import (
 	"os"
 )
 
-func GetWeatherByCity(key, cityname string) {
+func GetWeatherByCity(key, cityname string) WeatherResponse{
 	apiurl := "http://api.openweathermap.org/data/2.5/weather?units=metric&"
 
 	urltocall := fmt.Sprintf("%sq=%s&appid=%s", apiurl, cityname, key)
@@ -43,15 +43,10 @@ func GetWeatherByCity(key, cityname string) {
 		log.Println(err)
 		os.Exit(1)
 	}
-
-	fmt.Println("\nWeather data for:", cityname)
-	fmt.Printf("Current Temperature: %.2fC\n", apiresponse.Main.Temp)
-	fmt.Printf("Minimum Temperature: %.2fC\n", apiresponse.Main.TempMin)
-	fmt.Printf("Maximum Temperature: %.2fC\n", apiresponse.Main.TempMax)
-	fmt.Printf("Feel's Like: %.2fC\n", apiresponse.Main.FeelsLike)
+	return apiresponse
 }
 
-func GetWeatherByPincode(key, pincode string) {
+func GetWeatherByPincode(key, pincode string) WeatherResponse{
 	apiurl := "http://api.openweathermap.org/data/2.5/weather?units=metric&"
 
 	urltocall := fmt.Sprintf("%szip=%s,in&appid=%s", apiurl, pincode, key)
@@ -86,14 +81,10 @@ func GetWeatherByPincode(key, pincode string) {
 		os.Exit(1)
 	}
 
-	fmt.Println("\nWeather data for:", apiresponse.Name)
-	fmt.Printf("Current Temperature: %.2fC\n", apiresponse.Main.Temp)
-	fmt.Printf("Minimum Temperature: %.2fC\n", apiresponse.Main.TempMin)
-	fmt.Printf("Maximum Temperature: %.2fC\n", apiresponse.Main.TempMax)
-	fmt.Printf("Feel's Like: %.2fC\n", apiresponse.Main.FeelsLike)
+	return apiresponse
 }
 
-func GetWeatherByLatLon(key string, lat float64, lon float64) {
+func GetWeatherByLatLon(key string, lat float64, lon float64) WeatherResponse{
 	apiurl := "http://api.openweathermap.org/data/2.5/weather?units=metric&"
 
 	urltocall := fmt.Sprintf("%slat=%f&lon=%f&appid=%s", apiurl, lat, lon, key)
@@ -128,9 +119,33 @@ func GetWeatherByLatLon(key string, lat float64, lon float64) {
 		os.Exit(1)
 	}
 
-	fmt.Println("\nWeather data for:", apiresponse.Name)
-	fmt.Printf("Current Temperature: %.2fC\n", apiresponse.Main.Temp)
-	fmt.Printf("Minimum Temperature: %.2fC\n", apiresponse.Main.TempMin)
-	fmt.Printf("Maximum Temperature: %.2fC\n", apiresponse.Main.TempMax)
-	fmt.Printf("Feel's Like: %.2fC\n", apiresponse.Main.FeelsLike)
+	return apiresponse
+}
+
+func GetConditionIcon(apiresponse WeatherResponse) string{
+	id := apiresponse.Weather[0].ID
+	if id >= 200 && id <300 {
+		// Thundestorm
+		return "⛈"
+	} else if id >= 300 && id < 400 {
+		// Drizzle
+		return "☔️"
+	} else if id >= 500 && id < 600 {
+		// Rain
+		return "🌧"
+	}else if id >= 600 && id < 700 {
+		// Snow
+		return "❄️"
+	} else if id >= 700 && id < 800 {
+		// Atmosphere
+		return "🌫"
+	} else if id == 800 {
+		// Clear
+		return "☀️"
+	} else if id > 800 && id < 800{
+		// Cloudy
+		return "🌤"
+	} else {
+		return "❓"
+	}
 }
