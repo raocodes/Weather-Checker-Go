@@ -5,7 +5,7 @@ import (
 	"os"
 	"strings"
 
-	"github.com/raocodes/WeatherCheckerGo/helpers"
+	"github.com/raocodes/WeatherCheckerGo/utils"
 )
 
 func main() {
