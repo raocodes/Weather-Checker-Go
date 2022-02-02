@@ -26,7 +26,7 @@ func GetWeatherByCity(key, cityname string) {
 		os.Exit(1)
 	}
 
-	var apiresponse ByCityResponse
+	var apiresponse WeatherResponse
 
 	err = json.Unmarshal(data, &apiresponse)
 	if err != nil {
@@ -59,7 +59,7 @@ func GetWeatherByPincode(key, pincode string) {
 		os.Exit(1)
 	}
 
-	var apiresponse ByCityResponse
+	var apiresponse WeatherResponse
 
 	err = json.Unmarshal(data, &apiresponse)
 	if err != nil {
