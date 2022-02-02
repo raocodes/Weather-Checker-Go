@@ -4,6 +4,7 @@ import (
 	"encoding/json"
 	"fmt"
 	"io/ioutil"
+	"log"
 	"net/http"
 	"os"
 )
@@ -12,22 +13,25 @@ func GetWeatherByCity(key, cityname string) {
 	apiurl := "http://api.openweathermap.org/data/2.5/weather?units=metric&"
 
 	urltocall := fmt.Sprintf("%sq=%s&appid=%s", apiurl, cityname, key)
-	fmt.Println("Sending API call to:", urltocall)
+	log.Println("Sending API call to:", urltocall)
 
 	response, err := http.Get(urltocall) // Sending GET request
 	if err != nil {
 		fmt.Println("An error has occurred during the API call:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
 	if response.StatusCode == 401{
 		fmt.Println("API key entered is invalid!")
+		log.Println(err)
 		os.Exit(1)
 	}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println("An error has occurred when reading the response call:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
@@ -36,6 +40,7 @@ func GetWeatherByCity(key, cityname string) {
 	err = json.Unmarshal(data, &apiresponse)
 	if err != nil {
 		fmt.Println("An error has occurred when processing the response json:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
@@ -50,22 +55,25 @@ func GetWeatherByPincode(key, pincode string) {
 	apiurl := "http://api.openweathermap.org/data/2.5/weather?units=metric&"
 
 	urltocall := fmt.Sprintf("%szip=%s,in&appid=%s", apiurl, pincode, key)
-	fmt.Println("Sending API call to:", urltocall)
+	log.Println("Sending API call to:", urltocall)
 
 	response, err := http.Get(urltocall) // Sending GET request
 	if err != nil {
 		fmt.Println("An error has occurred during the API call:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
 	if response.StatusCode == 401{
 		fmt.Println("API key entered is invalid!")
+		log.Println(err)
 		os.Exit(1)
 	}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println("An error has occurred when reading the response call:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
@@ -74,6 +82,7 @@ func GetWeatherByPincode(key, pincode string) {
 	err = json.Unmarshal(data, &apiresponse)
 	if err != nil {
 		fmt.Println("An error has occurred when processing the response json:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
@@ -88,22 +97,25 @@ func GetWeatherByLatLon(key string, lat float64, lon float64) {
 	apiurl := "http://api.openweathermap.org/data/2.5/weather?units=metric&"
 
 	urltocall := fmt.Sprintf("%slat=%f&lon=%f&appid=%s", apiurl, lat, lon, key)
-	fmt.Println("Sending API call to:", urltocall)
+	log.Println("Sending API call to:", urltocall)
 
 	response, err := http.Get(urltocall) // Sending GET request
 	if err != nil {
 		fmt.Println("An error has occurred during the API call:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
 	if response.StatusCode == 401{
 		fmt.Println("API key entered is invalid!")
+		log.Println(err)
 		os.Exit(1)
 	}
 
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println("An error has occurred when reading the response call:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 
@@ -112,6 +124,7 @@ func GetWeatherByLatLon(key string, lat float64, lon float64) {
 	err = json.Unmarshal(data, &apiresponse)
 	if err != nil {
 		fmt.Println("An error has occurred when processing the response json:", err.Error())
+		log.Println(err)
 		os.Exit(1)
 	}
 

@@ -2,6 +2,7 @@ package main
 
 import (
 	"fmt"
+	"log"
 	"os"
 	"strings"
 
@@ -9,6 +10,14 @@ import (
 )
 
 func main() {
+	// Logging to a file
+	filehandler, err := os.OpenFile("weatherlogfile", os.O_RDWR | os.O_CREATE | os.O_APPEND, 0666)
+	if err != nil {
+		log.Fatalf("error opening file: %v", err)
+	}
+	defer filehandler.Close() // Closes file at the end of execution
+	log.SetOutput(filehandler)
+
 	var apikey string
 	var option byte
 	var optionpin string
@@ -18,6 +27,7 @@ func main() {
 	fmt.Print("Enter your API key: ")
 	fmt.Scan(&apikey)
 	fmt.Println("The API Key being used is:", apikey)
+	log.Println("API Key:", apikey)
 
 	fmt.Print("Continue (Y/N): ")
 	fmt.Scanf("%c\n", &option)
