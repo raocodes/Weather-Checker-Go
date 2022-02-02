@@ -1,4 +1,4 @@
-package helpers
+package utils
 
 type ByCityResponse struct {
 	Coord struct {

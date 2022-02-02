@@ -36,12 +36,12 @@ func main() {
 	if optionpin == "city" {
 		fmt.Print("Enter city name: ")
 		fmt.Scan(&cityname)
-		helpers.GetWeatherByCity(apikey, cityname)
+		utils.GetWeatherByCity(apikey, cityname)
 
 	} else if optionpin == "pin" {
 		fmt.Print("Enter PIN code: ")
 		fmt.Scan(&pincode)
-		helpers.GetWeatherByPincode(apikey, pincode)
+		utils.GetWeatherByPincode(apikey, pincode)
 
 	} else {
 		fmt.Println("Enter a valid option!")
