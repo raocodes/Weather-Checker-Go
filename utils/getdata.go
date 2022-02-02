@@ -16,13 +16,13 @@ func GetWeatherByCity(key, cityname string) {
 
 	response, error := http.Get(urltocall) // Sending GET request
 	if error != nil {
-		fmt.Println("An error has occurred during the API call:", error)
+		fmt.Println("An error has occurred during the API call:", error.Error())
 		os.Exit(1)
 	}
 
 	data, error := ioutil.ReadAll(response.Body)
 	if error != nil {
-		fmt.Println("An error has occurred when reading the response call:", error)
+		fmt.Println("An error has occurred when reading the response call:", error.Error())
 		os.Exit(1)
 	}
 
@@ -30,7 +30,7 @@ func GetWeatherByCity(key, cityname string) {
 
 	error = json.Unmarshal(data, &apiresponse)
 	if error != nil {
-		fmt.Println("An error has occurred when processing the response json:", error)
+		fmt.Println("An error has occurred when processing the response json:", error.Error())
 		os.Exit(1)
 	}
 
@@ -50,13 +50,13 @@ func GetWeatherByPincode(key, pincode string) {
 
 	response, error := http.Get(urltocall) // Sending GET request
 	if error != nil {
-		fmt.Println("An error has occurred during the API call:", error)
+		fmt.Println("An error has occurred during the API call:", error.Error())
 		os.Exit(1)
 	}
 
 	data, error := ioutil.ReadAll(response.Body)
 	if error != nil {
-		fmt.Println("An error has occurred when reading the response call:", error)
+		fmt.Println("An error has occurred when reading the response call:", error.Error())
 		os.Exit(1)
 	}
 
@@ -64,7 +64,7 @@ func GetWeatherByPincode(key, pincode string) {
 
 	error = json.Unmarshal(data, &apiresponse)
 	if error != nil {
-		fmt.Println("An error has occurred when processing the response json:", error)
+		fmt.Println("An error has occurred when processing the response json:", error.Error())
 		os.Exit(1)
 	}
 
