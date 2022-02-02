@@ -20,6 +20,11 @@ func GetWeatherByCity(key, cityname string) {
 		os.Exit(1)
 	}
 
+	if response.StatusCode == 401{
+		fmt.Println("API key entered is invalid!")
+		os.Exit(1)
+	}
+
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println("An error has occurred when reading the response call:", err.Error())
@@ -53,6 +58,11 @@ func GetWeatherByPincode(key, pincode string) {
 		os.Exit(1)
 	}
 
+	if response.StatusCode == 401{
+		fmt.Println("API key entered is invalid!")
+		os.Exit(1)
+	}
+
 	data, err := ioutil.ReadAll(response.Body)
 	if err != nil {
 		fmt.Println("An error has occurred when reading the response call:", err.Error())
@@ -83,6 +93,11 @@ func GetWeatherByLatLon(key string, lat float64, lon float64) {
 	response, err := http.Get(urltocall) // Sending GET request
 	if err != nil {
 		fmt.Println("An error has occurred during the API call:", err.Error())
+		os.Exit(1)
+	}
+
+	if response.StatusCode == 401{
+		fmt.Println("API key entered is invalid!")
 		os.Exit(1)
 	}
 
