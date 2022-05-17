@@ -1,3 +1,3 @@
-module github.com/raocodes/WeatherCheckerGo
+module WeatherCheckerGo
 
-go 1.17
+go 1.18

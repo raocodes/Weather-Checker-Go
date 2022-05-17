@@ -7,7 +7,7 @@ import (
 	"strings"
 	"time"
 
-	"github.com/raocodes/WeatherCheckerGo/utils"
+	"WeatherCheckerGo/utils"
 )
 
 func main() {
