@@ -1,4 +1,4 @@
-# WeatherCheckerGo
+# Weather-Checker-Go
 A simple CLI app to check the weather, written in Go. Uses OpenWeatherMap APIs for weather information.    
 
 **Requires an OpenWeatherMap API key.**    
