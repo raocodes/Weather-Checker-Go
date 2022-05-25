@@ -142,7 +142,7 @@ func GetConditionIcon(apiresponse WeatherResponse) string{
 	} else if id == 800 {
 		// Clear
 		return "☀️"
-	} else if id > 800 && id < 800{
+	} else if id > 800{
 		// Cloudy
 		return "🌤"
 	} else {
